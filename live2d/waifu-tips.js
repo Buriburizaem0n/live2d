@@ -1,5 +1,5 @@
 import * as PIXI from 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.min.js';
-import { Live2DModel } from 'pixi-live2d-display';
+import { Live2DModel } from './live2d/node_modules/pixi-live2d-display/dist/index.js';
 
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
