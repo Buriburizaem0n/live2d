@@ -1,5 +1,5 @@
-import * as PIXI from "pixi.js";
-import { Live2DModel } from "pixi-live2d-display";
+import * as PIXI from "./node_modules/pixi.js/dist/pixi.min.mjs";
+import { Live2DModel } from "./node_modules/pixi-live2d-display/dist/index.js";
 
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
