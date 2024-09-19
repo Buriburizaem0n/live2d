@@ -1,5 +1,5 @@
-import * as PIXI from "pixi.js";
-import { Live2DModel } from "pixi-live2d-display";
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@6.x/dist/browser/pixi.min.js"></script>;
+<script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/index.min.js"></script>;
 
 window.PIXI = PIXI;
 function ap_init() {
@@ -237,7 +237,7 @@ function loadWidget() {
 		view: element,
 		transparent: true,
 		});
-		const model = await Live2DModel.from(jsonpath);
+		const model = await PIXI.live2d.Live2DModel.from(jsonpath);
 
 		app.stage.addChild(model);
 		
