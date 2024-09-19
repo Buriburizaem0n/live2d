@@ -1,0 +1,10 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "chapome.moc3",
+		"Textures": [
+			"chapome.2048/texture_00.png"
+		],
+		"DisplayInfo": "chapome.cdi3.json"
+	}
+}
