@@ -135,20 +135,23 @@
 	
 	"click": [{
 		"selector": "#waifu #live2d",
-		"text": ["生气了哦，不要动手动脚的！", "愚蠢的人类，看见猫就想撸", "看见广告了吗？能不能帮我点一下ಥ_ಥ", "听我说谢谢你，因为有你，温暖了四季，谢谢你，感谢有你，世界更美丽～", "不要摸我了，信不信我敲碎你的屏幕？", "干嘛动我呀！小心我咬你！", "主人快来救我，这里有个变态！"]
-	}, {
+		"text": ["喂！我可不是玩具！", "不要随便碰我哦！", "小心我咬你！", "哎呀！你弄疼我了啦~", "别碰我了，我可是很矜持的喵~"]
+	},
+	{
 		"selector": "#post_comment_content",
-		"text": ["要吐槽些什么呢？", "评论支持Markdown语法的哦~", "有什么想说的吗？"]
-	}, {
+		"text": ["想要吐槽些什么？", "赶快说出你的想法吧！", "我可是会认真阅读你的评论的！", "你的意见对我很重要哦！"]
+	},
+	{
 		"selector": "#post_comment_captcha",
-		"text": ["输入验证码就可以提交评论啦～"]
-	}],
+		"text": ["只要输入验证码就可以了哦！", "不许作弊哦~", "输入验证码后，就能评论啦！"]
+	}
+	],
 	"seasons": [{
 		"date": "01/01",
 		"text": "<span>元旦</span>了呢，新的一年又开始了，今年是{year}年～"
 	}, {
 		"date": "02/14",
-		"text": "又是一年<span>情人节</span>，{year}年找到对象了嘛～"
+		"text": "又是一年<span>情人节</span>，{year}年两位博主有生活在一起嘛～"
 	}, {
 		"date": "03/08",
 		"text": "今天是<span>国际妇女节</span>！"
@@ -179,7 +182,16 @@
 	}, {
 		"date": "12/20-12/31",
 		"text": "这几天是<span>圣诞节</span>，主人肯定又去剁手买买买了～"
-	}],
+	},
+	{
+		"date": "12/25",
+		"text": "Merry <span>Christmas</span>！{year}年的圣诞愿望准备好了吗？"
+	},
+	{
+		"date": "06/18",
+		"text": "<span>父亲节</span>到了！记得对你的老爸说声谢谢哦～"
+	}
+	],
 	"time": [{
 		"hour": "6-7",
 		"text": "早上好！一日之计在于晨，美好的一天就要开始了～"
@@ -210,6 +222,6 @@
 		"console": "哈哈，你打开了控制台，是想要看看我的小秘密吗？",
 		"copy": "你都复制了些什么呀，转载要记得加上出处哦！",
 		"visibilitychange": "哇，你终于回来了～",
-		"secret_path":"<div style=\"text-align:center\">秘密通道<br/><a href=\"javascript:aplayer_panel_toggle();\">音乐播放器</a><br/><a href=\"https://crowya.com/yayawplogin\" target=\"_blank\">WordPress</a><br/><a href=\"http://139.224.16.2:1999/yayabt/\" target=\"_blank\">宝塔面板</a></div>"
+		"secret_path":"<div style=\"text-align:center\">秘密通道<br/><a href=\"javascript:aplayer_panel_toggle();\">音乐播放器</a><br/><a href=\"https://luoyangdonghui.de/lloggin/\" target=\"_blank\">WordPress</a><br/></div>"
 	}
 }
