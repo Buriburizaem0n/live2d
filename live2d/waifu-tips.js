@@ -1,6 +1,3 @@
-import * as PIXI from "./node_modules/pixi.js/dist/pixi.min.mjs";
-import { Live2DModel } from "./node_modules/pixi-live2d-display/dist/index.js";
-
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
@@ -224,8 +221,6 @@ function loadWidget() {
 		let index = (++modelId >= modelList.models.length) ? 0 : modelId;
 		loadModel(index, 0, modelList.messages[index]);
 	}
-
-	window.PIXI = PIXI;
 
  	async function loadModelPixi(id, jsonpath) {
     const element = document.getElementById(id);
