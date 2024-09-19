@@ -1,3 +1,7 @@
+import * as PIXI from "pixi.js";
+import { Live2DModel } from "pixi-live2d-display";
+
+window.PIXI = PIXI;
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
@@ -192,7 +196,8 @@ function loadWidget() {
 			}
 			modelTexturesId = 0; // 材质ID
 		}
-		loadModel(modelId, modelTexturesId);
+		// loadModel(modelId, modelTexturesId);
+		loadModelPixi(modelId, modelTexturesId);
 		fetch(`${live2d_path}waifu-tips.json`)
 			.then(response => response.json())
 			.then(registerEventListener);
@@ -218,8 +223,39 @@ function loadWidget() {
 		let modelId = localStorage.getItem("modelId");
 		if (!modelList) await loadModelList();
 		let index = (++modelId >= modelList.models.length) ? 0 : modelId;
-		loadModel(index, 0, modelList.messages[index]);
+		// loadModel(index, 0, modelList.messages[index]);
+		loadModelPixi(index, 0, modelList.messages[index]);
 	}
+
+	async function loadModelPixi(modelId, modelTexturesId, message) {
+		localStorage.setItem("modelId", modelId);
+		localStorage.setItem("modelTexturesId", modelTexturesId);
+		showMessage(message, 4000, 10);
+		const jsonpath = `${live2d_path}model/${target}/index.json`;
+		const element = document.getElementById(modelId);
+		const app = new PIXI.Application({
+		view: element,
+		transparent: true,
+		});
+		const model = await Live2DModel.from(jsonpath);
+
+		app.stage.addChild(model);
+		
+		const parentWidth = element.width;
+		const parentHeight = element.height;
+		// Scale to fit the stage
+		const ratio = Math.min(
+		parentWidth / model.width,
+		parentHeight / model.height
+		);
+		model.scale.set(ratio, ratio);
+		// Align bottom and center horizontally
+		
+		model.x = (parentWidth - model.width) / 2;
+		model.y =  parentHeight - model.height;
+		
+	}
+
 }
 
 function initWidget() {
