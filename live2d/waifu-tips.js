@@ -227,6 +227,8 @@ function loadWidget() {
 		localStorage.setItem("modelId", modelId);
 		localStorage.setItem("modelTexturesId", modelTexturesId);
 		showMessage(message, 4000, 10);
+		if (!modelList) await loadModelList();
+		let target = modelList.models[modelId];
 		const jsonpath = `${live2d_path}model/${target}/index.json`;
 		const element = document.getElementById(modelId);
 		const app = new PIXI.Application({
