@@ -2,12 +2,18 @@
     "models": [
     	"tororo",
     	"hijiki",
-    	"kesyoban"
+    	"kesyoban",
+        "pichu",
+        "pikachu",
+        "pome"
     ],
     
     "messages": [
         "喵 ~",
         "喵呜 ~",
-        "嘤嘤嘤 ~"
+        "嘤嘤嘤 ~",
+        "Hi·OuO",
+        "PikaPika ~",
+        "汪汪 ~"
     ]
 }
