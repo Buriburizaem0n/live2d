@@ -1,7 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/pixi.js@6.x/dist/browser/pixi.min.js"></script>;
-<script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/index.min.js"></script>;
-
-window.PIXI = PIXI;
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
