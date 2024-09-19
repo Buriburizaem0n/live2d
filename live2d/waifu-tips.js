@@ -1,5 +1,3 @@
-// import * as PIXI from 'pixi.js';
-// import { Live2DModel } from 'pixi-live2d-display';
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
