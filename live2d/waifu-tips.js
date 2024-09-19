@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js';
+import * as PIXI from 'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.min.js';
 import { Live2DModel } from 'pixi-live2d-display';
 
 function ap_init() {
