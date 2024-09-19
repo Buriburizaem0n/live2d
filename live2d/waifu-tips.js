@@ -1,3 +1,6 @@
+import * as PIXI from 'pixi.js';
+import { Live2DModel } from 'pixi-live2d-display';
+
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
@@ -235,7 +238,7 @@ function loadWidget() {
 		view: element,
 		transparent: true,
 		});
-		const model = await PIXI.live2d.Live2DModel.from(jsonpath);
+		const model = await Live2DModel.from(jsonpath);
 
 		app.stage.addChild(model);
 		
