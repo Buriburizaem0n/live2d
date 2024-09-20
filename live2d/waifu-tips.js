@@ -232,7 +232,6 @@ function loadWidget() {
 			loadModelPixi("live2d", modelPath);
 			console.log(`使用 Pixi 加载 Live2D 模型 ${modelId}-${target} 的 index3.json 文件`);
 		} else {
-			removePixiModel(app, model);
 			// 否则使用 loadlive2d 加载 index.json
 			loadlive2d("live2d", modelPath);
 			console.log(`使用 Live2D 加载模型 ${modelId}-${target} 的 index.json 文件`);
@@ -268,49 +267,6 @@ function loadWidget() {
     model.y =  parentHeight - model.height;
 }
 
-// 假设 app 是 PIXI.Application 实例, model 是当前的 Live2D 模型
-function removePixiModel(app, model) {
-    if (model && model.parent) {
-        // 从 PIXI 场景中移除模型
-        model.parent.removeChild(model);
-        // 销毁模型，释放资源
-        model.destroy();
-        console.log('PIXI Live2D 模型已成功删除');
-    }
-
-    // 停止并销毁 PIXI 应用
-    app.stop();
-    app.destroy(true, { children: true, texture: true, baseTexture: true });
-    console.log('PIXI 应用程序已关闭');
-}
-}
-
-function initWidget() {
-	document.body.insertAdjacentHTML("beforeend", `<div id="waifu-toggle">
-			<span>猫 咪</span>
-		</div>`);
-	let toggle = document.getElementById("waifu-toggle");
-	toggle.addEventListener("click", () => {
-		toggle.classList.remove("waifu-toggle-active");
-		if (toggle.getAttribute("first-time")) {
-			loadWidget();
-			toggle.removeAttribute("first-time");
-		} else {
-			localStorage.removeItem("waifu-display");
-			document.getElementById("waifu").style.display = "";
-			setTimeout(() => {
-				document.getElementById("waifu").style.bottom = 0;
-			}, 0);
-		}
-	});
-	if (localStorage.getItem("waifu-display") && Date.now() - localStorage.getItem("waifu-display") <= 86400000) {
-		toggle.setAttribute("first-time", true);
-		setTimeout(() => {
-			toggle.classList.add("waifu-toggle-active");
-		}, 0);
-	} else {
-		loadWidget();
-	}
 }
 
 console.log('\n' + ' %c Live2D with Music Player' + ' %c https://github.com/crowya/live2d ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
