@@ -232,6 +232,8 @@ function loadWidget() {
 			loadModelPixi("live2d", modelPath);
 			console.log(`使用 Pixi 加载 Live2D 模型 ${modelId}-${target} 的 index3.json 文件`);
 		} else {
+			removePixiModel(app, model);
+
 			// 否则使用 loadlive2d 加载 index.json
 			loadlive2d("live2d", modelPath);
 			console.log(`使用 Live2D 加载模型 ${modelId}-${target} 的 index.json 文件`);
@@ -266,6 +268,7 @@ function loadWidget() {
     model.x = (parentWidth - model.width) / 2;
     model.y =  parentHeight - model.height;
 }
+}
 
 function initWidget() {
 	document.body.insertAdjacentHTML("beforeend", `<div id="waifu-toggle">
@@ -293,7 +296,6 @@ function initWidget() {
 	} else {
 		loadWidget();
 	}
-}
 }
 
 console.log('\n' + ' %c Live2D with Music Player' + ' %c https://github.com/crowya/live2d ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
