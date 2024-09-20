@@ -1,11 +1,11 @@
 {
-    "models": [
-    	"tororo",
-    	"hijiki",
-    	"kesyoban",
-        "pichu",
-        "pikachu",
-        "pome"
+    "models_json_path": [
+    	"tororo/index.json",
+    	"hijiki/index.json",
+    	"kesyoban/index.json",
+        "pichu/index3.json",
+        "pikachu/index3.json",
+        "pome/index3.json"
     ],
     
     "messages": [

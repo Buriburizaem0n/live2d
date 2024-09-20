@@ -221,24 +221,20 @@ function loadWidget() {
 		showMessage(message, 4000, 10);
 	
 		if (!modelList) await loadModelList();
-		let target = modelList.models[modelId];
+		let target = modelList.models_json_path[modelId];
 	
 		// 模型路径
-		const modelPath = `${live2d_path}model/${target}/index.json`;
+		const modelPath = `${live2d_path}model/${target}`;
 	
-		// 先尝试使用 loadlive2d 加载
-		try {
-			await loadlive2d("live2d", modelPath); // 假设 loadlive2d 返回 Promise
-			console.log(`Live2D 模型 ${modelId}-${target} 的 index.json 文件加载完成`);
-		} catch (error) {
-			console.error(`加载 Live2D 模型失败: ${error.message}，尝试使用 Pixi 加载模型`);
-			try {
-				// 如果 loadlive2d 失败，尝试使用 loadModelPixi 加载 index3.json
-				await loadModelPixi("live2d", modelPath);
-				console.log(`Live2D 模型 ${modelId}-${target} 的 index.json 文件加载完成 (使用 Pixi)`);
-			} catch (pixiError) {
-				console.error(`使用 Pixi 加载模型也失败: ${pixiError.message}`);
-			}
+		// 使用正则表达式判断文件名
+		if (/index3\.json$/.test(modelPath)) {
+			// 如果文件名为 index3.json，则使用 loadModelPixi
+			loadModelPixi("live2d", modelPath);
+			console.log(`使用 Pixi 加载 Live2D 模型 ${modelId}-${target} 的 index3.json 文件`);
+		} else {
+			// 否则使用 loadlive2d 加载 index.json
+			loadlive2d("live2d", modelPath);
+			console.log(`使用 Live2D 加载模型 ${modelId}-${target} 的 index.json 文件`);
 		}
 	}
 	
