@@ -126,6 +126,16 @@
 	color: #0684bd; /* #34495e */
 }
 
+/* 当用户点击时（:active），让工具栏可见 */
+#waifu:active #waifu-tool {
+	opacity: 1; /* 显示工具栏 */
+}
+
+/* 保持触摸激活后工具栏显示出来（使用 :focus-within） */
+#waifu:focus-within #waifu-tool {
+	opacity: 1; /* 工具栏保持显示 */
+}
+
 @keyframes shake {
 	2% {
 		transform: translate(.5px, -1.5px) rotate(-.5deg);
