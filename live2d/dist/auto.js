@@ -1,9 +1,10 @@
-const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test34/live2d/";
+const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test35/live2d/";
 
 //封装异步加载资源的方法
 function loadExternalResource(url, type) {
     return new Promise((resolve, reject) => {
         let tag;
+
         if (type === "css") {
             tag = document.createElement("link");
             tag.rel = "stylesheet";
@@ -13,6 +14,7 @@ function loadExternalResource(url, type) {
             tag.src = url;
             tag.async = true; // 确保脚本是异步加载的
         }
+
         if (tag) {
             tag.onload = () => {
                 resolve(`Resource loaded: ${url}`);
@@ -34,26 +36,28 @@ function loadExternalResource(url, type) {
     });
 }
 
-if (screen.width >= 768) {
-	Promise.all([
-		loadExternalResource(live2d_path + "waifu.css", "css"),
-		loadExternalResource(live2d_path + "live2d.min.js", "js"),
-		loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js"),
-		loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
-		loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js"),
- loadExternalResource("https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js", "js"),
-	]).then(() => {
-		loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
-	});
-	ap = null;
-	Object.defineProperty(document.querySelector('meting-js'), "aplayer", {
-		set: function(aplayer) {
-        		ap = aplayer;
-        		ap_init();
-        		initWidget();
-		}
-	});
+if (screen.width >= 600) {
+    Promise.all([
+        loadExternalResource(live2d_path + "waifu.css", "css"),
+        loadExternalResource(live2d_path + "live2d.min.js", "js"),
+        loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js"),
+        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
+        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js"),
+        loadExternalResource("https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js", "js"),
+    ]).then(() => {
+        loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
+    });
+
+    ap = null;
+    Object.defineProperty(document.querySelector('meting-js'), "aplayer", {
+        set: function (aplayer) {
+            ap = aplayer;
+            ap_init();
+            initWidget();
+        }
+    });
 }
+
 console.log(`
     く__,.ヘヽ.        /  ,ー､ 〉
              ＼ ', !-─‐-i  /  /´
