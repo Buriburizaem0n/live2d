@@ -243,7 +243,7 @@ function loadWidget() {
 	async function loadNextModel() {
 		let modelId = localStorage.getItem("modelId");
 		if (!modelList) await loadModelList();
-		let index = (++modelId >= modelList.models.length) ? 0 : modelId;
+		let index = (++modelId >= modelList.models_json_path.length) ? 0 : modelId;
 		loadModel(index, 0, modelList.messages[index]);
 	}
 
