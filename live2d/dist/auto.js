@@ -1,4 +1,4 @@
-const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test35/live2d/";
+const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d/live2d/";
 
 //封装异步加载资源的方法
 function loadExternalResource(url, type) {
