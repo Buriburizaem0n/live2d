@@ -40,11 +40,12 @@ if (screen.width >= 600) {
     Promise.all([
         loadExternalResource(live2d_path + "waifu.css", "css"),
         loadExternalResource(live2d_path + "live2d.min.js", "js"),
-        loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js"),
-        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
-        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js"),
         loadExternalResource("https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js", "js"),
+        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
+        loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js")
     ]).then(() => {
+        loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js");
+    }).then(() => {
         loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
     });
 
