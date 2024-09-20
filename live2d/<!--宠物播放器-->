@@ -67,5 +67,5 @@ if (screen.width >= 768) {
 ####################################################################all in one####################################################################
 <!--宠物播放器-->
 <meting-js server="netease" type="playlist" id="2142063878" theme="#339981" fixed="true" preload="none" autoplay="false" loop="all" volume="0.3" order="random" mutex="true"></meting-js>;
-<script src="/wp-content/uploads/live2d_test43/live2d/dist/auto.js"></script>
+<script src="/wp-content/uploads/live2d/live2d/dist/auto.js"></script>
 
