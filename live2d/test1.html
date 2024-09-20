@@ -16,7 +16,7 @@
 </head>
 <body>
     <!-- 创建一个 canvas 元素来承载 Live2D 模型 -->
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" width='800' height="800"></canvas>
 
     <!-- 引入 PixiJS 和 pixi-live2d-display -->
     <script src="https://www.luoyangdonghui.de/wp-content/uploads/live2d_test16/live2d/live2d.min.js"></script>
@@ -38,13 +38,13 @@
           });
 
           // 加载 Live2D 模型（确保 'shizuku.model.json' 在正确的路径中）
-          const model = await PIXI.live2d.Live2DModel.from('https://www.luoyangdonghui.de/wp-content/uploads/live2d_test16/live2d/model/pichu/index.json');
+          const model = await PIXI.live2d.Live2DModel.from('./model/pichu/index.json');
 
           // 将模型添加到应用的舞台
           app.stage.addChild(model);
 
           // 设置模型的初始位置、旋转、缩放和锚点
-          model.x = 200;
+          model.x = 300;
           model.y = 500;
           model.rotation = Math.PI;
           model.skew.x = Math.PI;
