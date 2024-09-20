@@ -232,8 +232,6 @@ function loadWidget() {
 			loadModelPixi("live2d", modelPath);
 			console.log(`使用 Pixi 加载 Live2D 模型 ${modelId}-${target} 的 index3.json 文件`);
 		} else {
-			removePixiModel(app, model);
-
 			// 否则使用 loadlive2d 加载 index.json
 			loadlive2d("live2d", modelPath);
 			console.log(`使用 Live2D 加载模型 ${modelId}-${target} 的 index.json 文件`);
