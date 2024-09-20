@@ -44535,7 +44535,7 @@
     (_a = this.__moc) == null ? void 0 : _a.release();
   }
 
-  function ap_init() {
+  function  ap_init() {
       $(".aplayer-body").addClass("my-hide");
       ap.lrc.hide();  //初始化时隐藏歌词
       ap.on('play', () => ap.lrc.show());
@@ -44748,7 +44748,9 @@
       const element = document.getElementById(id);
       const app = new Application({
         view: element,
+  	  autoStart: true,
         transparent: true,
+  	  resizeTo: window
       });
       const model = await Live2DModel.from(jsonpath);
       app.stage.addChild(model);
@@ -44764,6 +44766,32 @@
       // Align bottom and center horizontally
       model.x = (parentWidth - model.width) / 2;
       model.y =  parentHeight - model.height;
+
+  	// read json file to find motion groups
+  	let modelJson = await readJSON(`${jsonpath}`);
+  	// if model has motion groups
+  	if (modelJson.motions) {
+  		// change motion after 5-10s
+  		setInterval(() => {
+  			const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
+  			model.motion(motionGroup);
+  		}, Math.floor(Math.random() * 5000) + 5000);
+  	}
+
+  	// change expression after click on model
+  	model.on("pointerdown", () => {
+  		model.expression();
+  	});
+
+  	// function to read json file
+  	function readJSON(path) {
+  		return new Promise((resolve, reject) => {
+  			fetch(path)
+  				.then(response => response.json())
+  				.then(data => resolve(data))
+  				.catch(error => reject(error));
+  		});
+  	}
   }
   }
 

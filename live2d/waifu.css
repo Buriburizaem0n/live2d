@@ -101,6 +101,7 @@
 	height: 280px;
 	position: relative;
 	width: 300px;
+	/* z-index: -1; */
 }
 
 #waifu #live2d:active {
