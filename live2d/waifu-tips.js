@@ -204,15 +204,43 @@ function loadWidget() {
 		modelList = result;
 	}
 
+	// async function loadModel(modelId, modelTexturesId, message) {
+	// 	localStorage.setItem("modelId", modelId);
+	// 	localStorage.setItem("modelTexturesId", modelTexturesId);
+	// 	showMessage(message, 4000, 10);
+	// 	if (!modelList) await loadModelList();
+	// 	let target = modelList.models[modelId];
+	// 	// loadlive2d("live2d", `${live2d_path}model/${target}/index.json`);
+	// 	loadModelPixi("live2d", `${live2d_path}model/${target}/index.json`);
+	// 	console.log(`Live2D 模型 ${modelId}-${target} 加载完成`);
+	// }
+
 	async function loadModel(modelId, modelTexturesId, message) {
 		localStorage.setItem("modelId", modelId);
 		localStorage.setItem("modelTexturesId", modelTexturesId);
 		showMessage(message, 4000, 10);
+	
 		if (!modelList) await loadModelList();
 		let target = modelList.models[modelId];
-		// loadlive2d("live2d", `${live2d_path}model/${target}/index.json`);
-		loadModelPixi("live2d", `${live2d_path}model/${target}/index.json`);
-		console.log(`Live2D 模型 ${modelId}-${target} 加载完成`);
+		
+		// 模型路径
+		const modelPath = `${live2d_path}model/${target}/index.json`;
+		const modelPathAlt = `${live2d_path}model/${target}/index3.json`;
+	
+		// 先尝试使用 loadlive2d 加载
+		try {
+			await loadlive2d("live2d", modelPath); // 假设 loadlive2d 返回的是 Promise
+			console.log(`Live2D 模型 ${modelId}-${target} 的 index.json 文件加载完成`);
+		} catch (error) {
+			console.error(`加载 Live2D 模型失败: ${error.message}，尝试使用 Pixi 加载模型`);
+			try {
+				// 如果 loadlive2d 失败，尝试使用 loadModelPixi 加载 index3.json
+				await loadModelPixi("live2d", modelPathAlt);
+				console.log(`Live2D 模型 ${modelId}-${target} 的 index3.json 文件加载完成 (使用 Pixi)`);
+			} catch (pixiError) {
+				console.error(`使用 Pixi 加载模型也失败: ${pixiError.message}`);
+			}
+		}
 	}
 
 	async function loadNextModel() {
