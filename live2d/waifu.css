@@ -42,7 +42,8 @@
 	position: fixed;
 	transform: translateY(3px);
 	transition: transform .3s ease-in-out, bottom 3s ease-in-out;
-	z-index: 1;
+	width: 25%;
+	height: 25%;
 }
 
 #waifu:hover {
@@ -98,10 +99,9 @@
 
 #waifu #live2d {
 	cursor: grab;
-	height: 280px;
+	height: 100%;
 	position: relative;
-	width: 330px;
-	/* z-index: -1; */
+	width: 100%;
 }
 
 #waifu #live2d:active {

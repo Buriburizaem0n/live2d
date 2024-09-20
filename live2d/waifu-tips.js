@@ -232,32 +232,6 @@ function loadWidget() {
       transparent: true,
 	  resizeTo: window
     });
-    const model = await Live2DModel.from(jsonpath);
-    app.stage.addChild(model);
-    
-    const parentWidth = element.width;
-    const parentHeight = element.height;
-    // Scale to fit the stage
-    const ratio = Math.min(
-      parentWidth / model.width,
-      parentHeight / model.height
-    );
-    model.scale.set(ratio, ratio);
-    // Align bottom and center horizontally
-    model.x = (parentWidth - model.width) / 2;
-    model.y =  parentHeight - model.height;
-
-	// read json file to find motion groups
-	let modelJson = await readJSON(`${jsonpath}`);
-
-	// change expression after click on model
-	model.on("pointerdown", () => {
-		model.expression();
-		if (modelJson.motions) {
-			const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
-			model.motion(motionGroup);
-		}
-	});
 
 	// function to read json file
 	function readJSON(path) {
@@ -268,6 +242,50 @@ function loadWidget() {
 				.catch(error => reject(error));
 		});
 	}
+
+	function draggable(model) {
+		model.buttonMode = true;
+		model.on("pointerdown", (e) => {
+		  model.dragging = true;
+		  model._pointerX = e.data.global.x - model.x;
+		  model._pointerY = e.data.global.y - model.y;
+		});
+		model.on("pointermove", (e) => {
+		  if (model.dragging) {
+			model.position.x = e.data.global.x - model._pointerX;
+			model.position.y = e.data.global.y - model._pointerY;
+		  }
+		});
+		model.on("pointerupoutside", () => (model.dragging = false));
+		model.on("pointerup", () => (model.dragging = false));
+	  }
+	  const model = await Live2DModel.from(jsonpath);
+	  app.stage.addChild(model);
+	  
+	  const parentWidth = element.width;
+	  const parentHeight = element.height;
+	  // Scale to fit the stage
+	  const ratio = Math.min(
+		parentWidth / model.width,
+		parentHeight / model.height
+	  );
+	  model.scale.set(ratio, ratio);
+	  // Align bottom and center horizontally
+	  model.x = (parentWidth - model.width) / 2;
+	  model.y =  parentHeight - model.height;
+	  draggable(model);
+	  // read json file to find motion groups
+	  let modelJson = await readJSON(`${jsonpath}`);
+  
+	  // change expression after click on model
+	  model.on("pointerdown", () => {
+		  model.expression();
+		  if (modelJson.motions) {
+			  const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
+			  model.motion(motionGroup);
+		  }
+	  });
+  
 }
 }
 
