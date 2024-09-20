@@ -1,26 +1,5 @@
 const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test34/live2d/";
 
-document.addEventListener("DOMContentLoaded", function() {
-    // 创建 <meting-js> 元素
-    const metingJs = document.createElement("meting-js");
-
-    // 设置 <meting-js> 的属性
-    metingJs.setAttribute("server", "netease");
-    metingJs.setAttribute("type", "playlist");
-    metingJs.setAttribute("id", "2142063878");
-    metingJs.setAttribute("theme", "#339981");
-    metingJs.setAttribute("fixed", "true");
-    metingJs.setAttribute("preload", "none");
-    metingJs.setAttribute("autoplay", "false");
-    metingJs.setAttribute("loop", "all");
-    metingJs.setAttribute("volume", "0.3");
-    metingJs.setAttribute("order", "random");
-    metingJs.setAttribute("mutex", "true");
-
-    // 将 <meting-js> 插入到 body 中
-    document.body.appendChild(metingJs);
-});
-
 //封装异步加载资源的方法
 function loadExternalResource(url, type) {
     return new Promise((resolve, reject) => {
