@@ -232,14 +232,13 @@ function loadWidget() {
 			loadModelPixi("live2d", modelPath);
 			console.log(`使用 Pixi 加载 Live2D 模型 ${modelId}-${target} 的 index3.json 文件`);
 		} else {
+			removePixiModel(app, model);
 			// 否则使用 loadlive2d 加载 index.json
 			loadlive2d("live2d", modelPath);
 			console.log(`使用 Live2D 加载模型 ${modelId}-${target} 的 index.json 文件`);
 		}
 	}
 	
-	
-
 	async function loadNextModel() {
 		let modelId = localStorage.getItem("modelId");
 		if (!modelList) await loadModelList();
@@ -254,7 +253,6 @@ function loadWidget() {
       transparent: true,
     });
     const model = await PIXI.live2d.Live2DModel.from(jsonpath);
-
     app.stage.addChild(model);
     
     const parentWidth = element.width;
@@ -266,12 +264,25 @@ function loadWidget() {
     );
     model.scale.set(ratio, ratio);
     // Align bottom and center horizontally
-    
     model.x = (parentWidth - model.width) / 2;
     model.y =  parentHeight - model.height;
-    
 }
 
+// 假设 app 是 PIXI.Application 实例, model 是当前的 Live2D 模型
+function removePixiModel(app, model) {
+    if (model && model.parent) {
+        // 从 PIXI 场景中移除模型
+        model.parent.removeChild(model);
+        // 销毁模型，释放资源
+        model.destroy();
+        console.log('PIXI Live2D 模型已成功删除');
+    }
+
+    // 停止并销毁 PIXI 应用
+    app.stop();
+    app.destroy(true, { children: true, texture: true, baseTexture: true });
+    console.log('PIXI 应用程序已关闭');
+}
 }
 
 function initWidget() {
