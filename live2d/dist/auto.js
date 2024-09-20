@@ -44,7 +44,9 @@ if (screen.width >= 600) {
         loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
         loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js")
     ]).then(() => {
-        Promise.loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js");
+        Promise.all([
+            loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js")
+        ]);
     }).then(() => {
         loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
     });
