@@ -1,6 +1,6 @@
 <!--宠物播放器-->
 <script>
-const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test18/live2d/";
+const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test35/live2d/";
 </script>
 <meting-js server="netease" type="playlist" id="2142063878" theme="#339981" fixed="true" preload="none" autoplay="false" loop="all" volume="0.3" order="random" mutex="true"></meting-js>;
 <script>
@@ -45,12 +45,10 @@ if (screen.width >= 768) {
 	Promise.all([
 		loadExternalResource(live2d_path + "waifu.css", "css"),
 		loadExternalResource(live2d_path + "live2d.min.js", "js"),
-		loadExternalResource(live2d_path + "waifu-tips.js", "js"),
+		loadExternalResource(live2d_path + "/dist/waifu-tips.js", "js"),
 		loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
 		loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js"),
-		loadExternalResource("https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js", "js"),
-		loadExternalResource("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.min.js", "js"),
-		loadExternalResource("https://cdn.jsdelivr.net/npm/pixi-live2d-display@latest/dist/index.min.js", "js"),
+ loadExternalResource("https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js", "js"),
 	]).then(() => {
 		loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
 	});
