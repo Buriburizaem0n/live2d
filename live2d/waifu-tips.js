@@ -1,3 +1,5 @@
+import * as PIXI from "pixi.js";
+import { Live2DModel } from "pixi-live2d-display";
 function ap_init() {
     $(".aplayer-body").addClass("my-hide");
     ap.lrc.hide();  //初始化时隐藏歌词
@@ -228,7 +230,7 @@ function loadWidget() {
       view: element,
       transparent: true,
     });
-    const model = await PIXI.live2d.Live2DModel.from(jsonpath);
+    const model = await Live2DModel.from(jsonpath);
     app.stage.addChild(model);
     
     const parentWidth = element.width;
@@ -272,5 +274,10 @@ function initWidget() {
 		loadWidget();
 	}
 }
+
+window.PIXI = PIXI;
+window.ap_init = ap_init;
+window.initWidget = initWidget;
+
 
 console.log('\n' + ' %c Live2D with Music Player' + ' %c https://github.com/crowya/live2d ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
