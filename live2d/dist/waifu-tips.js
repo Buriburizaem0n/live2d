@@ -44769,18 +44769,14 @@
 
   	// read json file to find motion groups
   	let modelJson = await readJSON(`${jsonpath}`);
-  	// if model has motion groups
-  	if (modelJson.motions) {
-  		// change motion after 5-10s
-  		setInterval(() => {
-  			const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
-  			model.motion(motionGroup);
-  		}, Math.floor(Math.random() * 5000) + 5000);
-  	}
 
   	// change expression after click on model
   	model.on("pointerdown", () => {
   		model.expression();
+  		if (modelJson.motions) {
+  			const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
+  			model.motion(motionGroup);
+  		}
   	});
 
   	// function to read json file
