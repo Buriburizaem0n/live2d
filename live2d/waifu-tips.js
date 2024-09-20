@@ -228,7 +228,7 @@ function loadWidget() {
       view: element,
       transparent: true,
     });
-    const model = await Live2DModel.from(jsonpath);
+    const model = await PIXI.live2d.Live2DModel.from(jsonpath);
 
     app.stage.addChild(model);
     

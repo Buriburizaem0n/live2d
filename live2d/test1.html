@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live2D Test</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 创建一个 canvas 元素来承载 Live2D 模型 -->
+    <canvas id="canvas"></canvas>
+
+    <!-- 引入 PixiJS 和 pixi-live2d-display -->
+    <script src="https://www.luoyangdonghui.de/wp-content/uploads/live2d_test16/live2d/live2d.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.min.js"></script>
+    <script src="https://unpkg.com/pixi-live2d-display@latest/dist/index.min.js"></script>
+    <script>
+        // 引入 PixiJS 和 Live2D 显示插件
+        // import * as PIXI from 'pixi.js';
+        // import { Live2DModel } from 'pixi-live2d-display';
+
+        // 将 PIXI 暴露到全局，以便插件能引用 window.PIXI.Ticker 进行更新
+        window.PIXI = PIXI;
+
+        (async function () {
+          // 创建一个 PIXI 应用程序并将其绑定到页面上的 canvas 元素
+          const app = new PIXI.Application({
+            view: document.getElementById('canvas'),
+          });
+
+          // 加载 Live2D 模型（确保 'shizuku.model.json' 在正确的路径中）
+          const model = await PIXI.live2d.Live2DModel.from('https://www.luoyangdonghui.de/wp-content/uploads/live2d_test16/live2d/model/pichu/index.json');
+
+          // 将模型添加到应用的舞台
+          app.stage.addChild(model);
+
+          // 设置模型的初始位置、旋转、缩放和锚点
+          model.x = 200;
+          model.y = 500;
+          model.rotation = Math.PI;
+          model.skew.x = Math.PI;
+          model.scale.set(0.5, 0.5);
+          model.anchor.set(0.5, 0.5);
+
+          // 模型的交互事件，当点击模型身体时触发动作
+          model.on('hit', (hitAreas) => {
+            if (hitAreas.includes('body')) {
+              model.motion('tap_body');
+            }
+          });
+        })();
+    </script>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live2D Pet and Music Player</title>
+    <style>
+        /* 简单的样式来隐藏宠物 */
+        .my-hide {
+            display: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live2D 宠物播放器与音乐播放器</h1>
+
+    <!-- 宠物播放器与Metting -->
+    <meting-js server="netease" type="playlist" id="2142063878" theme="#339981" fixed="true" preload="none" autoplay="false" loop="all" volume="0.3" order="random" mutex="true"></meting-js>
+    <script>src="https://cdn.jsdelivr.net/npm/live2dcubismcore@1.0.2/live2dcubismcore.min.js"</script>
+    <script>
+        const live2d_path = "https://www.luoyangdonghui.de/wp-content/uploads/live2d_test16/live2d/";
+
+        // 封装异步加载资源的方法
+        function loadExternalResource(url, type) {
+            return new Promise((resolve, reject) => {
+                let tag;
+                if (type === "css") {
+                    tag = document.createElement("link");
+                    tag.rel = "stylesheet";
+                    tag.href = url;
+                }
+                else if (type === "js") {
+                    tag = document.createElement("script");
+                    tag.src = url;
+                }
+                if (tag) {
+                    tag.onload = () => resolve(url);
+                    tag.onerror = () => reject(url);
+                    document.head.appendChild(tag);
+                }
+            });
+        }
+
+        // 初始化宠物播放器
+        function ap_init() {
+            console.log('宠物播放器初始化');
+            // 示例逻辑，可以根据实际情况调整
+            ap.lrc.hide(); // 初始化时隐藏歌词
+            ap.on('play', () => ap.lrc.show());  // 播放时显示歌词
+            ap.on('pause', () => ap.lrc.hide()); // 暂停时隐藏歌词
+        }
+
+        function initWidget() {
+            console.log("Widget Initialized");
+        }
+
+        if (screen.width >= 768) {
+            Promise.all([
+                loadExternalResource(live2d_path + "waifu.css", "css"),
+                loadExternalResource(live2d_path + "live2d.min.js", "js"),
+                loadExternalResource(live2d_path + "waifu-tips.js", "js"),
+                loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css", "css"),
+                loadExternalResource("https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js", "js"),
+                loadExternalResource("https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js", "js"),
+                loadExternalResource("https://cdn.jsdelivr.net/npm/pixi-live2d-display/dist/index.js", "js"),
+            ]).then(() => {
+                loadExternalResource("https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js", "js");
+            });
+
+            let ap = null;
+            Object.defineProperty(document.querySelector('meting-js'), "aplayer", {
+                set: function(aplayer) {
+                    ap = aplayer;
+                    ap_init();   // 初始化宠物播放器
+                    initWidget(); // 初始化 Widget
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
