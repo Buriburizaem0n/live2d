@@ -48,7 +48,7 @@
 
 /* waifu */
 #waifu {
-	bottom: 10px; /* 设置一个固定的 bottom */
+	bottom: 0px; /* 设置一个固定的 bottom */
 	left: 0%;
 	line-height: 0;
 	position: fixed;
@@ -70,7 +70,7 @@
 }
 
 @media (max-width: 1300px) {
-	#waifu	-tool {
+	#waifu-tool {
 		opacity: 1 !important; /* 手机和平板设备上始终显示 */
 		transition: none; /* 去掉渐变效果，工具栏立即显示 */
 		z-index: 10; /* 确保工具栏在 canvas 之上 */
