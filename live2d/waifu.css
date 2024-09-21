@@ -69,7 +69,7 @@
 	}
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
 	#waifu-tool {
 		opacity: 1 !important; /* 手机和平板设备上始终显示 */
 		transition: none; /* 去掉渐变效果，工具栏立即显示 */
