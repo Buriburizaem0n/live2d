@@ -70,7 +70,7 @@
 }
 
 @media (max-width: 1300px) {
-	#waifu-tool {
+	#waifu	-tool {
 		opacity: 1 !important; /* 手机和平板设备上始终显示 */
 		transition: none; /* 去掉渐变效果，工具栏立即显示 */
 		z-index: 10; /* 确保工具栏在 canvas 之上 */
@@ -170,7 +170,7 @@
 }
 
 #waifu-tool span {
-	color: #5b6c7d;
+	color: #284fd2;
 	cursor: pointer;
 	display: block;
 	line-height: 30px;
@@ -179,7 +179,7 @@
 }
 
 #waifu-tool span:hover {
-	color: #0684bd; /* #34495e */
+	color: #f3a9d2; /* #34495e */
 }
 
 /* 当用户点击时（:active），让工具栏可见 */
