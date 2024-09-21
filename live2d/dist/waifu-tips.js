@@ -44763,22 +44763,6 @@
   		});
   	}
 
-  	function draggable(model) {
-  		model.buttonMode = true;
-  		model.on("pointerdown", (e) => {
-  		  model.dragging = true;
-  		  model._pointerX = e.data.global.x - model.x;
-  		  model._pointerY = e.data.global.y - model.y;
-  		});
-  		model.on("pointermove", (e) => {
-  		  if (model.dragging) {
-  			model.position.x = e.data.global.x - model._pointerX;
-  			model.position.y = e.data.global.y - model._pointerY;
-  		  }
-  		});
-  		model.on("pointerupoutside", () => (model.dragging = false));
-  		model.on("pointerup", () => (model.dragging = false));
-  	  }
   	  const model = await Live2DModel.from(jsonpath);
   	  app.stage.addChild(model);
   	  
@@ -44791,21 +44775,23 @@
   	  );
   	  model.scale.set(ratio, ratio);
   	  // Align bottom and center horizontally
-  	  model.x = (parentWidth - model.width) / 2;
+  	  model.x = 0;
   	  model.y =  parentHeight - model.height;
-  	  draggable(model);
+  	//   draggable(model);
   	  // read json file to find motion groups
   	  let modelJson = await readJSON(`${jsonpath}`);
-    
-  	  // change expression after click on model
+  	// change expression and motion after click on model
   	  model.on("pointerdown", () => {
   		  model.expression();
   		  if (modelJson.motions) {
   			  const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
   			  model.motion(motionGroup);
   		  }
+  		  if (modelJson.FileReferences.Motions) {
+  			  const motionGroup = Object.keys(modelJson.FileReferences.Motions)[Math.floor(Math.random() * Object.keys(modelJson.FileReferences.Motions).length)];
+  			  model.motion(motionGroup);
+  		  }
   	  });
-    
   }
   }
 
