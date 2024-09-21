@@ -44783,15 +44783,14 @@
   	// change expression and motion after click on model
   	  model.on("pointerdown", () => {
   		  model.expression();
-  		  if (modelJson.motions) {
+  		  if (modelJson?.motions) {
   			  const motionGroup = Object.keys(modelJson.motions)[Math.floor(Math.random() * Object.keys(modelJson.motions).length)];
   			  model.motion(motionGroup);
-  		  }
-  		  if (modelJson.FileReferences.Motions) {
-  			  const motionGroup = Object.keys(modelJson.FileReferences.Motions)[Math.floor(Math.random() * Object.keys(modelJson.FileReferences.Motions).length)];
-  			  model.motion(motionGroup);
-  		  }
-  	  });
+  		  }		  if (modelJson?.FileReferences?.Motions) {
+  			  const motion3Group = Object.keys(modelJson.FileReferences.Motions)[Math.floor(Math.random() * Object.keys(modelJson.FileReferences.Motions).length)];
+  			  model.motion(motion3Group);
+  		  }	  });
+
   }
   }
 
